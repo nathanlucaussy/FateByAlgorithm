@@ -1,0 +1,56 @@
+.App-header {
+  font-size: calc(10px + 4vmin);
+  color: black;
+  text-align:center;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.split {
+  top: 0px;
+  position:relative;
+  height: calc(100vh - 195px);
+  overflow-y: scroll;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #FBE8A6;
+  padding-bottom: 5%;
+}
+
+.lp-left{
+  float: left;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow-x: visible;
+  text-align: center;
+}
+
+.lp-right{
+  float:right;
+
+  right: 0;
+  width: 0%
+}
+.start-button-div{
+  text-align:center;
+  padding: 30px;
+}
+.chat-box{
+  padding: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 5px solid black;
+  border-radius: 20px;
+  background-color: 	#FDFFD4;
+  text-align: left;
+}
+
+.mallet{
+  display: inline-block;
+  padding-left: 2%;
+  position: relative;
+  bottom: 20px
+}
+.appname{
+  display: inline-block;
+}

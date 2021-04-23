@@ -1,0 +1,45 @@
+
+.ip-name-header{
+  font-size: calc(10px + 4vmin);
+  color: black;
+  text-align: center;
+
+
+  color: black;
+  font-size: calc(10px + 4vmin);
+  font-family: "Menlo", monospace;
+  font-style: italic;
+  transition: width 50ms;
+}
+.ip-split {
+  top: 0px;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y:scroll;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #FBE8A6;
+}
+
+.ip-left{
+  float:left;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 20%;
+  width: 70%;
+  display: fixed;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  border-radius: 20px;
+  background-color:	#FDFFD4;
+}
+.ip-right{
+  float:right;
+  right: 0;
+  width:18%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

@@ -1,0 +1,134 @@
+.background-div{
+  background-color: #FBE8A6;
+  top: 0;
+  bottom:0;
+  position:fixed;
+  overflow-y:auto;
+  overflow-x:hidden;
+  width: 100%;
+}
+.sharing{
+  border: 5px solid black;
+  background-color: white;
+  display: inline-block;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.results-l{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.results-r{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: pre-wrap;
+}
+.overall-kindness-box{
+  border: 5px solid black;
+  background-color: darkgrey;
+  border-radius: 20px;
+  width: 70%;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.name-and-progress{
+  height: 140px;
+}
+.name-container{
+  display: flex;
+  align-items: center;
+  top: 0px;
+  float:left;
+  width:30vw;
+  margin-left: 35vw;
+  height: 140px;
+}
+.highlight {
+    background-color: #6a7dbe;
+    color: white;
+    font-size: 3.3vmin;
+}
+.narrative-vs-dp-box{
+  border: 5px solid darkgreen;
+  border-radius: 20px;
+  overflow-y: scroll;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+
+}
+
+.single-box{
+  border: 5px solid darkgreen;
+  border-radius: 20px;
+  overflow-y: scroll;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+
+}
+.left{
+  border-right: 1px solid black;
+  width: 49%;
+  float: left;
+}
+.right{
+  width: 50%;
+  float: right;
+}
+.scen-back-name-header{
+
+
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  font-size: calc(10px + 4vmin);
+  color: black;
+  text-align: center;
+  line-height: 1;
+  border-radius: 6px;
+  border: 4px black solid;
+
+  font-family: Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif
+}
+.progressbar-container{
+  border: 4px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  float:right;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.ok-container{
+  display: inline-block;
+  float:right;
+  position: 'relative';
+  max-width: 13%;
+  text-align: center;
+  padding-right: 2%;
+  transform: skew(-10deg);
+}
+.not-ok-container{
+  float: left;
+  padding-left: 2%;
+  transform: skew(-10deg);
+  max-width: 5%;
+  text-align:center;
+  justify-content: center;
+}

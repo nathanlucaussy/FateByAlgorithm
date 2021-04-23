@@ -1,0 +1,16 @@
+version: '3'
+services:
+   fba-backend:
+      restart: unless-stopped
+      build:
+         context: ./api
+         dockerfile: ./Dockerfile
+      ports:
+         - '5000:5000'
+   fba-react:
+      restart: unless-stopped
+      build:
+         context: ./
+         dockerfile: ./Dockerfile
+      ports:
+         - '3001:3000'

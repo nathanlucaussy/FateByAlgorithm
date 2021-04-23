@@ -1,0 +1,34 @@
+.page-header{
+
+  background-color: #213671;
+  position: relative;
+  width: 100%;
+  top: 0px;
+  height: 92px;
+  border-bottom: 5px solid black;
+}
+.logo-cs{
+  position: absolute;
+  float:left;
+  left: 4px;
+  top: 0px;
+  height: 90px;
+  padding-right: 15px;
+  border: 2px solid white;
+  border-radius: 8px;
+  transform: skew(-5deg);
+}
+.hcc-text{
+  margin: auto;
+  position:absolute;
+  left: 290px;
+  top: 50%;
+  color: white;
+  text-align: center;
+  padding-left: 15px;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  transform: translate(0, -50%)
+}
+.footer{
+  background-color: grey;
+}

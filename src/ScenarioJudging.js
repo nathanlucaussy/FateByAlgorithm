@@ -11,6 +11,7 @@ import './ScenarioJudging.css';
 import {WindupChildren} from 'windups';
 import styled from 'styled-components';
 import Timer from 'react-compound-timer';
+import { fetchApi } from './fetchApi';
 // Using an ES6 transpiler like Babel
 import Slider from '@appigram/react-rangeslider';
 // To include the default styles
@@ -391,7 +392,7 @@ function CommentsDialog(props){
             'chosen_dp': dp_key
           })
       };
-      fetch('/send_short_comments', requestOptions);
+      fetchApi('/send_short_comments', requestOptions);
       history.push(("/scenario".concat((parseInt(scenario_count) ).toString())).concat('/final_page'))
     }
   }
@@ -701,7 +702,7 @@ function SecondTimerEnd(to, scenario_count,
                             })
                         };
 
-                        fetch('/send_comments', requestOptions);
+                        fetchApi('/send_comments', requestOptions);
                         showNext(to);
                        };
 
@@ -739,7 +740,7 @@ function NextPageButton(props){
     };
     console.log(props.selected_category);
 
-    fetch('/send_comments', requestOptions);
+    fetchApi('/send_comments', requestOptions);
     showNext(props.to);
 
   }
@@ -776,7 +777,7 @@ function FairnessButton(props){
         })
     };
     props.set_page_change()
-    fetch('/send_fairness', requestOptions);
+    fetchApi('/send_fairness', requestOptions);
     props.set_most_recent_fairness(props.fairness_val);
     var element_to_scroll_to = document.getElementById('comments');
     element_to_scroll_to.scrollIntoView();

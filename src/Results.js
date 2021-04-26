@@ -7,6 +7,7 @@ import YodaImg from './Graphics/yoda_filled.jpeg';
 import HumansImg from './Graphics/humans.jpeg';
 import TerminatorImg from './Graphics/terminator.png';
 import {TwitterShareButton, FacebookShareButton, FacebookIcon, TwitterIcon} from 'react-share';
+import { fetchApi } from './fetchApi';
 import './Results.css';
 
 function KindnessGauge(props){
@@ -73,7 +74,7 @@ function ResultsPage() {
           'user_id': random_id,
         })
     };
-    fetch('/results_backend_avg').then(res => res.json()).then(data => {
+    fetchApi('/results_backend_avg').then(res => res.json()).then(data => {
       set_overall_kindness_avg(data.overall_kindness);
       set_kindness_narrative_avg(data.kindness_narrative);
       set_kindness_datapoint_avg(data.kindness_datapoint);
@@ -81,7 +82,7 @@ function ResultsPage() {
       set_esoteric_info_avg(data.esoteric_info);
       set_past_info_avg(data.past_info);
     });
-    fetch('/results_backend_self', requestOptions).then(res => res.json()).then(data => {
+    fetchApi('/results_backend_self', requestOptions).then(res => res.json()).then(data => {
       set_overall_kindness(data.overall_kindness);
       set_kindness_narrative(data.kindness_narrative);
       set_kindness_datapoint(data.kindness_datapoint);

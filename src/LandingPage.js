@@ -11,6 +11,7 @@ import {useFixedPositionWindup} from './DialogComponent.js';
 import mallet_before from './Graphics/mallet_before.png';
 import mallet_mid from './Graphics/mallet_mid.png';
 import mallet_after from './Graphics/mallet_after.png';
+import { fetchApi } from './fetchApi';
 
 /*const Button = styled.button`
   background-color: black;
@@ -82,7 +83,7 @@ function StartButton(){
   const [chosen_names, set_chosen_names] = useState({});
 
   useEffect(() => {
-    fetch('/counts_backend').then(res => res.json()).then(data => {
+    fetchApi('/counts_backend').then(res => res.json()).then(data => {
       set_chosen_names(data);
 
     });

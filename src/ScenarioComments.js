@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import ProgressBarTriad from './ProgressBarTriad';
 import Arrow, { DIRECTION } from 'react-arrows'
 import TextareaAutosize from 'react-textarea-autosize';
-
+import { fetchApi } from './fetchApi';
 
 const MoreButton = styled.button`
   display:inline-block;
@@ -605,7 +605,7 @@ function NextPageButton(props){
         })
     };
     console.log(requestOptions.body);
-    fetch('/send_comments', requestOptions);
+    fetchApi('/send_comments', requestOptions);
 
     trackEvent({
       'author_id': random_id,

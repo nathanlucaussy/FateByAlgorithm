@@ -9,7 +9,7 @@ services:
       ports:
          - '5000:5000'
       volumes:
-         - /Users/nathanlucaussy/fba-db/:/instance/
+         - ./db/:/app/instance/
    fba-react:
       container_name: fba-react
       restart: unless-stopped
@@ -17,4 +17,4 @@ services:
          context: ./
          dockerfile: ./Dockerfile
       ports:
-         - '3001:80'
+         - '3000:80'

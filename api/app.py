@@ -1,21 +1,23 @@
 from flask import Flask, send_from_directory, request
 from flask_cors import CORS
-import db
+from os.path import join, abspath, dirname
 import os
+import db
 import sqlite3
 import math
 import random
 app = Flask(__name__, static_url_path='', static_folder='build')
 CORS(app) # add CORS headers to requests
 
-app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join('/instance/', 'flaskr.sqlite'),
-    )
+app_dir = dirname(__file__)                            # ./
+instance_dir = abspath(join(app_dir, './instance'))    # ./instance/
+db_file = abspath(join(instance_dir, "flaskr.sqlite")) # ./instance/flaskr.sqlite
+
+app.config.from_mapping(SECRET_KEY='dev', DATABASE=db_file)
 
 # ensure the instance folder exists
 try:
-    os.makedirs('/instance/')
+    os.makedirs(instance_dir)
 except OSError:
     pass
 

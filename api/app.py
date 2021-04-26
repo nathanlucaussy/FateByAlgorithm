@@ -1,21 +1,23 @@
 from flask import Flask, send_from_directory, request
 from flask_cors import CORS
-import db
+from os.path import join, abspath, dirname
 import os
+import db
 import sqlite3
 import math
 import random
 app = Flask(__name__, static_url_path='', static_folder='build')
 CORS(app) # add CORS headers to requests
 
-app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
+app_dir = dirname(__file__)                            # ./
+instance_dir = abspath(join(app_dir, './instance'))    # ./instance/
+db_file = abspath(join(instance_dir, "flaskr.sqlite")) # ./instance/flaskr.sqlite
+
+app.config.from_mapping(SECRET_KEY='dev', DATABASE=db_file)
 
 # ensure the instance folder exists
 try:
-    os.makedirs(app.instance_path)
+    os.makedirs(instance_dir)
 except OSError:
     pass
 
@@ -169,13 +171,13 @@ def get_self():
             print(overall_kindness_avg + min(1, overall_kindness_avg/2.0), flush=True)
             print(overall_kindness, flush=True)
 
-            if (overall_kindness >= (overall_kindness_avg - min(1, overall_kindness_avg/2.0) )
-                and overall_kindness <= (overall_kindness_avg + min(1, overall_kindness_avg/2.0) )):
+            if (overall_kindness >= (overall_kindness_avg - min(1.1, overall_kindness_avg/2.0) )
+                and overall_kindness <= (overall_kindness_avg + min(1.1, overall_kindness_avg/2.0) )):
                 user_category = 1
             elif overall_kindness > (overall_kindness_avg + min(0.5, overall_kindness_avg/2.0)):
-                user_category = 2
-            else:
                 user_category = 0
+            else:
+                user_category = 2
         return({
                 "overall_kindness": overall_kindness,
                 "kindness_narrative": kindness_narrative,

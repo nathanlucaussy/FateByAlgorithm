@@ -397,22 +397,22 @@ function CommentsDialog(props){
     }
   }
 
-  if (props.scenario_count < 2){
+  if (props.scenario_count <= 2){
     if (props.most_recent_fairness < 50){
       fairness_choice = "UNFAIR";
 
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nWhich of the following pieces of information do you think the algorithm was least justified in using?";
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
       dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
     }
     else if (props.most_recent_fairness > 50){
       fairness_choice = "FAIR";
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nWhich of the following pieces of information do you think the algorithm was most justified in using?";
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been MOST justified in using?";
       dialog_2_lines = [ "Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "]
     }
     else{
       fairness_choice = "NEUTRAL";
 
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nWhich of the following pieces of information do you think the algorithm was least justified in using?";
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
       dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
     }
   }
@@ -420,13 +420,19 @@ function CommentsDialog(props){
     if (props.most_recent_fairness <= 50){
       fairness_choice = "UNFAIR";
 
-      dialog_1_lines = "Which do you think the algorithm was LEAST justified in using?";
+      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
       dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info?"];
     }
     else if (props.most_recent_fairness > 50){
       fairness_choice = "FAIR";
-      dialog_1_lines = "Which do you think the algorithm was MOST justified in using?";
+      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been MOST justified in using?";
       dialog_2_lines = [ "Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info?"]
+    }
+    else{
+      fairness_choice = "NEUTRAL";
+
+      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
+      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
     }
   }
 

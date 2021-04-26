@@ -102,8 +102,9 @@ function ResultsPage() {
       set_title_msg("Algorithms are unfair! ")
     }
   }, []);
-
-
+  console.log(10.0 - overall_kindness_avg)
+  console.log(10.0 - overall_kindness)
+  console.log(overall_kindness)
   console.log(user_category)
   return (
     <div className = "background-div">
@@ -151,7 +152,7 @@ function ResultsPage() {
               }
           </div>
           <div id = "single-box" className="overall-kindness-box">
-            <KindnessGauge caption={"Your kindness vs others!"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={overall_kindness_avg} value_you={overall_kindness}/>
+            <KindnessGauge caption={"Your kindness vs others!"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={(10.0 - overall_kindness_avg)} value_you={10 - overall_kindness}/>
           </div>
         </div>
         <div className = "sharing">
@@ -179,10 +180,10 @@ function ResultsPage() {
         {(kindness_narrative != "NaN") && (kindness_datapoint != "NaN") &&
         <div className="narrative-vs-dp-box">
           <div className = 'left'>
-            <KindnessGauge caption={"Kindness when shown candidate's story/narrative"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={kindness_narrative_avg} value_you={0.9}/>
+            <KindnessGauge caption={"Kindness when shown candidate's story/narrative"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={10 - kindness_narrative_avg} value_you={10 - kindness_narrative}/>
           </div>
           <div className = 'right'>
-            <KindnessGauge caption={"Kindness when shown candidate's datapoints only"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={kindness_datapoint_avg} value_you={9}/>
+            <KindnessGauge caption={"Kindness when shown candidate's datapoints only"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={10 - kindness_datapoint_avg} value_you={10 - kindness_datapoint}/>
           </div>
         </div>}
         {(group_info != "NaN") &&

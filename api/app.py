@@ -10,12 +10,12 @@ CORS(app) # add CORS headers to requests
 
 app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DATABASE=os.path.join('/instance/', 'flaskr.sqlite'),
     )
 
 # ensure the instance folder exists
 try:
-    os.makedirs(app.instance_path)
+    os.makedirs('/instance/')
 except OSError:
     pass
 
@@ -169,13 +169,13 @@ def get_self():
             print(overall_kindness_avg + min(1, overall_kindness_avg/2.0), flush=True)
             print(overall_kindness, flush=True)
 
-            if (overall_kindness >= (overall_kindness_avg - min(1, overall_kindness_avg/2.0) )
-                and overall_kindness <= (overall_kindness_avg + min(1, overall_kindness_avg/2.0) )):
+            if (overall_kindness >= (overall_kindness_avg - min(1.1, overall_kindness_avg/2.0) )
+                and overall_kindness <= (overall_kindness_avg + min(1.1, overall_kindness_avg/2.0) )):
                 user_category = 1
             elif overall_kindness > (overall_kindness_avg + min(0.5, overall_kindness_avg/2.0)):
-                user_category = 2
-            else:
                 user_category = 0
+            else:
+                user_category = 2
         return({
                 "overall_kindness": overall_kindness,
                 "kindness_narrative": kindness_narrative,

@@ -1,10 +1,13 @@
 from flask import Flask, send_from_directory, request
+from flask_cors import CORS
 import db
 import os
 import sqlite3
 import math
 import random
 app = Flask(__name__, static_url_path='', static_folder='build')
+CORS(app) # add CORS headers to requests
+
 app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -15,6 +18,11 @@ try:
     os.makedirs(app.instance_path)
 except OSError:
     pass
+
+# just something to quickly test the server
+@app.route('/status')
+def get_status():
+    return "OK"
 
 @app.route('/counts_backend', methods=['GET'])
 def get_counts():

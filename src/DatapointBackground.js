@@ -6,7 +6,8 @@ import {WindupChildren, Pace} from 'windups';
 import GaugeChart from 'react-gauge-chart';
 import styled, { keyframes } from "styled-components";
 import {Flash} from "react-animations";
-import arrow_img from './Graphics/arrow_image.png'
+import arrow_img from './Graphics/arrow_image.png';
+
 
 const FlashAnimation = keyframes`${Flash}`;
 const FlashDiv = styled.div`

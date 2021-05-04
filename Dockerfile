@@ -5,6 +5,9 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN yarn install --silent
 COPY . ./
+ENV REACT_APP_API_ADDRESS=https://hcc.cs.ox.ac.uk
+ENV REACT_APP_API_ROOT=/fba-api/
+ENV PUBLIC_URL=/fate-by-algo/
 RUN yarn run build
 
 # production environment

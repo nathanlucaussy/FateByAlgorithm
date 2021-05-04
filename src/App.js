@@ -11,7 +11,7 @@ import ResultsPage from './Results.js'
 function App(){
 
     return(
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL} >
         <div>
           <Switch>
             <Route path='/results_page'>

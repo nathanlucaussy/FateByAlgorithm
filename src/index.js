@@ -19,11 +19,11 @@ setGlobal({
     most_recent_fairness: 0,
     scenario_store:[{
       "name": "Martha",
-      "narrative":  [ "Martha is a 40 years old. She works a manual job in a supermarket. She owns a small house on a mortgage.",
+      "narrative":  [ "Martha works a manual job in a supermarket.",
 
-                      "Two years ago, Martha fell ill due to overworking. She was not able to work for 6 months. Because of this, she payed her mortgage late four times. She has recovered and has been able to work & pay her mortgage for the past year.",
+                      "Two years ago, Martha fell ill due to overworking. She was not able to work for 6 months. Because of this, she was late on mortage repayments. She has recovered and has been able to work & repay her mortgage loan for the past year.",
 
-                      "Martha applies for a 4000USD cash loan from PayDay Lenders®. She has already filed two other unsuccessful loan applications with banks this year.",
+                      "Martha applies for a 2000USD cash loan from PayDay Lenders®. She has already filed two other unsuccessful loan applications with banks this year.",
 
                       "This will help her fund the last two years of her children's secondary schooling."],
       "category": 'LOAN',
@@ -32,7 +32,7 @@ setGlobal({
       "datapoints": {
                     "Number of family members": "3",
                     "Deprivation index of neighbourhood": "HIGHLY DEPRIVED",
-                    "Region population level": "0.4",
+                    "Population density": "0.4",
 
                     "Credit score": "LOW",
                     "Number of loan applications in past year\n (successful or unsuccessful)": "4",
@@ -50,7 +50,7 @@ setGlobal({
       "dp_indications": {
                     "Number of family members": "AVERAGE",
                     "Deprivation index of neighbourhood": "HIGH",
-                    "Region population level": "AVERAGE",
+                    "Population density": "AVERAGE",
 
                     "Credit score": "LOW",
                     "Number of loan applications in past year\n (successful or unsuccessful)": "AVERAGE",
@@ -59,6 +59,7 @@ setGlobal({
                     "Total annual income": "LOW",
                     "Loan purpose": "N/A",
                     "Amount requested to borrow": "AVERAGE",
+
                     "Number of days employed at job": "LOW",
                     "Days since last phone change": "LOW",
                         }
@@ -110,27 +111,27 @@ setGlobal({
     },
     {
       'name':'Ray',
-      "narrative": ["Ray is a 22-year-old gig-economy worker. He was born in a modest neighbourhood.Although Ray was a good student, he dropped out when his parents fell ill. Ray started working to cover family expenses.",
+      "narrative": ["Ray is a gig-economy worker. He was born in a modest neighbourhood.Although Ray was a good student, he dropped out when his parents fell ill. Ray started working to cover family expenses. "
 
-                    "Since then, Ray has been working as a delivery worker. Working hard, this turns out to $26 000 per year - although it makes for 9-hour days.",
+                    + "Since then, Ray has been working as a delivery worker. Through this, he earns $23 000 per year - although it makes for 9-hour days.",
 
                     "Ray has a worse-than-average credit score - he is sometimes late on repayment of his phone bill. However, he has always paid rent on time - this is 20x the phone bill, yet the landlord does not declare it to the credit bureau; therefore it does not improve Ray's credit score.",
 
-                    "Ray applies for a $1500 loan to buy a scooter and transition into a salaried courier job."],
+                    "Ray applies for a $2000 loan to buy a scooter and transition into a salaried courier job."],
       "category": 'LOAN',
       "gender": "M",
       'datapoints': {
         "Number of family members": "7",
         "Deprivation index of neighbourhood": "HIGHLY DEPRIVED",
-        "Region population level": "0.9",
+        "Population density": "0.9",
 
         "Credit score": "LOW",
         "Number of loan applications in past year\n (successful or unsuccessful)": "2",
         "Num. late payments past 3 years": "7",
 
-        "Total annual income": "$22000",
+        "Total annual income": "$23000",
         "Loan purpose": "Automotive",
-        "Amount requested to borrow": "$1500",
+        "Amount requested to borrow": "$2000",
 
         "Number of days employed at job": "1200",
         "Days since last phone change": "33",
@@ -139,7 +140,7 @@ setGlobal({
       'dp_indications': {
         "Number of family members": "HIGH",
         "Deprivation index of neighbourhood": "HIGH",
-        "Region population level": "HIGH",
+        "Population density": "HIGH",
 
         "Credit score": "LOW",
         "Number of loan applications in past year\n (successful or unsuccessful)": "AVERAGE",
@@ -155,9 +156,9 @@ setGlobal({
       },
       {
         'name': 'John',
-        "narrative": ["John was arrested for assault. John was born in a high-crime neighbourhood. Until the age of 15, John was a good student.",
+        "narrative": ["John was arrested for assault. John was born in a high-crime neighbourhood. Until the age of 15, John was a good student. "
 
-                      "However, influenced by friends,  John became dependent on alcohol. John still drinks heavily, and hops from minimum-wage job to minimum-wage job.",
+                      + "However, influenced by friends,  John became dependent on alcohol. John still drinks heavily, and hops from minimum-wage job to minimum-wage job.",
 
                       "Twice when drunk and hungry, John has stolen food from a store - this happened when he was unemployed. In a drunken fight, he causes a minor physical injury to another man.",
 
@@ -199,9 +200,9 @@ setGlobal({
       },
       {
         'name': 'Jacob',
-        "narrative": ["Jacob was arrested for assault. Jacob is 60-year old doctor. Everyone sees Jacob as trustworthy. He lives in a safe neighbourhood, and has a good income.",
+        "narrative": ["Jacob was arrested for assault. Jacob is 60-year old doctor. Everyone sees Jacob as trustworthy. He lives in a safe neighbourhood, and has no trouble paying bills."
 
-                      "Jacob has never been arrested and has never used any drugs. He has the ability to sweet-talk people into getting what he wants.",
+                      +" Jacob has never been arrested and has never used any drugs. He has the ability to sweet-talk people into getting what he wants.",
 
                       "Jacob is often violent towards his wife. She has contemplated calling the police about this for many years, but only recently had the courage to do so. Jacob was charged with assault."],
         "category": "CRIM",
@@ -247,13 +248,13 @@ setGlobal({
 
                       "Drunk, Cynthia crashed the car on her way to a nightclub. Cynthia now works at a local café. She consumes many drugs and generally engages in irresponsible behaviour, which makes her employment  precarious.",
 
-                      "She wishes to take a 2000USD loan out to buy a car so that she does not have to depend on her parents' car any more."],
+                      "She applies for a 2000USD loan to buy a car so that she does not have to depend on her parents' car any more."],
         "category": 'LOAN',
         "gender": 'F',
         'datapoints': {
-          "Number of family members": "1",
+          "Number of family members": "3",
           "Deprivation index of neighbourhood": "NOT DEPRIVED",
-          "Region population level": "0.7",
+          "Population density": "0.7",
 
           "Credit score": "HIGH",
           "Number of loan applications in past year\n (successful or unsuccessful)": "1",
@@ -270,7 +271,7 @@ setGlobal({
         'dp_indications': {
           "Number of family members": "LOW",
           "Deprivation index of neighbourhood": "LOW",
-          "Region population level": "AVERAGE",
+          "Population density": "AVERAGE",
 
           "Credit score": "HIGH",
           "Number of loan applications in past year\n (successful or unsuccessful)": "LOW",
@@ -290,7 +291,7 @@ setGlobal({
 
                         "Jackson has been employed at his current job for 1500 days, where he currently earns $31 000 a year. He does not have any children.",
 
-                        "The region where Jackson lives has been rated as 'moderately deprived'. He once had a late-payment on a loan in the past 3 years, and has an average credit score",
+                        "The region where Jackson lives has been rated as 'moderately deprived'. Twice in the past 3 years, Jackson had a late-payment on a loan, and he has an average credit score",
 
                         "Jackson's loan application was denied."],
           "category": 'LOAN',
@@ -298,7 +299,7 @@ setGlobal({
           'datapoints': {
             "Number of family members": "1",
             "Deprivation index of neighbourhood": "MODERATELY DEPRIVED",
-            "Region population level": "0.6",
+            "Population density": "0.6",
 
             "Credit score": "AVERAGE",
             "Number of loan applications in past year\n (successful or unsuccessful)": "1",
@@ -313,9 +314,9 @@ setGlobal({
           },
           'outcome': 'REJECTED',
           'dp_indications': {
-            "Number of family members": "1",
+            "Number of family members": "LOW",
             "Deprivation index of neighbourhood": "AVERAGE",
-            "Region population level": "AVERAGE",
+            "Population density": "AVERAGE",
 
             "Credit score": "AVERAGE",
             "Number of loan applications in past year\n (successful or unsuccessful)": "LOW",
@@ -331,11 +332,11 @@ setGlobal({
           },
           {
             'name': 'Denise',
-            "narrative": ["Denise is currently charged with drugs possession (classed with a crime-severity of 4/10).This offence did not involve family violence.",
+            "narrative": ["Denise is currently charged with drugs possession/use (classed with a crime-severity of 4/10).This offence did not involve family violence.",
 
-                          "There is some crime in Denise's neighbourhood, and many of her friends have been arrested in the past.",
+                          "There is some crime in Denise's neighbourhood, and many of her friends have been arrested in the past."
 
-                          "She has been arrested once (either as an adult or as a juvenile), but never used heroin, cocaine, crack or meth as a juvenile.",
+                          + " She has been arrested once (either as an adult or as a juvenile), but never used heroin, cocaine, crack or meth as a juvenile.",
 
                           "Denise usually had good grades in high school. She sometimes has trouble paying bills, and believes she has the ability to 'sweet talk' people into getting what she wants." ],
             "category": "CRIM",

@@ -237,7 +237,8 @@ def post_comments():
             print(1, flush=True)
             dp_selected = data['dp_selected']
             print(1, flush=True)
-            chosen_dp = data['chosen_dp']
+            chosen_dp_1 = data['chosen_dp_1']
+            chosen_dp_2 = data['chosen_dp_2']
             print(1, flush=True)
             dp_fairness_comment_1 = data['dp_fairness_comment_1']
             dp_fairness_comment_2 = data['dp_fairness_comment_2']
@@ -252,13 +253,13 @@ def post_comments():
             print(type(scenario_name), flush=True)
             print(type(is_narrative), flush=True)
             print(type(dp_selected), flush=True)
-            print(type(chosen_dp), flush=True)
+            print(type(chosen_dp_1), flush=True)
             print(type(dp_fairness_comment_1), flush=True)
             print(type(chosen_extraneous_dp), flush=True)
             print(type(extraneous_comment), flush=True)
             with sqlite3.connect(app.config['DATABASE']) as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO comments (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp, dp_fairness_comment_1,dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment) VALUES (?,?,?,?,?,?,?,?,?,?,?)", (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp, dp_fairness_comment_1, dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment))
+                cur.execute("INSERT INTO comments (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp_1, chosen_dp_2, dp_fairness_comment_1, dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp_1, chosen_dp_2, dp_fairness_comment_1, dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment))
                 con.commit()
                 print("Record successfully added", flush=True)
         except:
@@ -286,11 +287,12 @@ def post_short_comments():
             print(1, flush=True)
             dp_selected = data['dp_selected']
             print(1, flush=True)
-            chosen_dp = data['chosen_dp']
+            chosen_dp_1 = data['chosen_dp_1']
+            chosen_dp_2 = data['chosen_dp_2']
 
             with sqlite3.connect(app.config['DATABASE']) as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO comments (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp, dp_fairness_comment_1,dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment) VALUES (?,?,?,?,?,?,?, ?, ? ,?, ?)", (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp, None, None, None , None, None ))
+                cur.execute("INSERT INTO comments (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp_1, chosen_dp_2, dp_fairness_comment_1,dp_fairness_comment_2, dp_fairness_comment_3, chosen_extraneous_dp, extraneous_comment) VALUES (?,?,?,?,?,?,?, ?, ? ,?, ?, ?)", (user_id, scenario_count, scenario_name, is_narrative, dp_selected, chosen_dp_1, chosen_dp_2, None, None, None , None, None ))
                 con.commit()
                 print("Record successfully added", flush=True)
         except:

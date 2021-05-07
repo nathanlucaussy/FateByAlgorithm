@@ -62,7 +62,7 @@ function ScenarioBackgroundPage(props){
           </div>
           <div style={{display:'block'}}>
             <div  className="presentation-container">
-              <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness lawyer!\n' + explanation_info]}
+              <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n' + explanation_info]}
                                 person = {current_scenario_data.gender}
                                 onFinished = {() => set_show_dialog(true)}/>
             </div>
@@ -100,7 +100,7 @@ function ScenarioBackgroundPage(props){
           </div>
           <div style={{display:'block'}}>
             <div  className="presentation-container">
-             <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness lawyer!\n', explanation_info]}
+             <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n', explanation_info]}
                               person = {current_scenario_data.gender}
                               onFinished = {() => setTimeout(function(){
                                               history.push(`${props.parent_path}/evaluationpage`)

@@ -16,11 +16,22 @@ export default function ScenarioFinalPage(props){
   var to = "";
   var buttonText = "";
   var explanation_info = [];
-  if (props.scenario_count < 8){
+  if (props.scenario_count < 6){
     explanation_info = ["Hang on tight! "
-                        + "Your job as the fairness lawyer isn't over yet..."]
+                        + "Your job as the fairness expert isn't over yet..."]
     to = "/scenario".concat((parseInt(props.scenario_count) + 1)).concat('/backgroundpage')
     buttonText = "Reveal my next case..."
+  }
+  else if (props.scenario_count < 7){
+    explanation_info = ["You've completed the game! "
+                        + "Here are two more -bonus- cases if you would like to continue"]
+    to = "/scenario".concat((parseInt(props.scenario_count) + 1)).concat('/backgroundpage')
+    buttonText = "Reveal the bonus cases..."
+  }
+  else if (props.scenario_count < 8){
+    explanation_info = ["Here's the last bonus case:"]
+    to = "/scenario".concat((parseInt(props.scenario_count) + 1)).concat('/backgroundpage')
+    buttonText = "Reveal"
   }
   else {
     explanation_info = ["Hooray! "
@@ -58,10 +69,12 @@ export default function ScenarioFinalPage(props){
       </div>}
       {((props.scenario_count >=3) && (props.scenario_count < 8)) &&
       <div style={{marginBottom: '80px'}}>
+        {props.scenario_count !=6 && props.scenario_count != 7 &&
         <p>
           We'd hate to see you go <span>😢</span>, but if you must leave now,
           you can exit early to see your fairness report:
         </p>
+        }
         <SkipButton/>
       </div>
       }

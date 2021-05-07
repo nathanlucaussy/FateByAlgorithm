@@ -5120,7 +5120,7 @@ const AccessibleWindupString = ({ text }) => {
             <div aria-hidden>{windupText}</div>
         </>
     )
-} 
+}
 `;
 const SCREENREADER_CHILDREN_EXAMPLE = `import { WindupChildren, textFromChildren } from "windups";
 import { VisuallyHidden } from "@reach/visually-hidden";
@@ -5138,7 +5138,7 @@ const AccessibleWindupChildren = ({ children }) => {
             </div>
         </>
     )
-} 
+}
 `;
 
 const Accessibility = () => {
@@ -5190,7 +5190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const TRICKY_EXAMPLE = `const TrickyWindup = () => {
     const [isPink, setIsPink] = useState(false);
-  
+
     return (
       <>
         <button onClick={() => setIsPink(true)}>{"Make it pink!"}</button>
@@ -5222,7 +5222,7 @@ const TrickyWindup = () => {
 
 const FIXED_EXAMPLE = `const FixedWindup = () => {
     const [isPink, setIsPink] = useState(false);
-  
+
     return (
       <>
         <button onClick={() => setIsPink(true)}>{"Make it pink!"}</button>
@@ -5236,7 +5236,7 @@ const FIXED_EXAMPLE = `const FixedWindup = () => {
         </WindupChildren>
       </>
     );
-  };  
+  };
 `;
 
 const FixedWindup = () => {
@@ -6079,7 +6079,7 @@ const UnstyledExample = () => {
 };
 
 const STYLED_EXAMPLE = `import React from "react";
-import { WindupChildren } from "windups"; 
+import { WindupChildren } from "windups";
 
 const StyledExample = () => {
   return (
@@ -6380,14 +6380,14 @@ const PausedExample = () => {
     <WindupChildren onFinished={proceed}>
       <p>
         {
-          "I asked her: why did you do it? 
+          "I asked her: why did you do it?
           Why did you tear apart the only lily pad I'd ever know as home?"
         }
       </p>
       <Pause ms={500}/>
       <p>
         {
-          "She looked back at me with those 
+          "She looked back at me with those
           froggy little eyes of hers and croaked one word:"
         }
       </p>
@@ -9586,9 +9586,9 @@ function ScenarioEvaluationPage(props) {
   var explanation_info = [];
 
   if (current_scenario_data.category == 'LOAN') {
-    explanation_info = ["PayDay Lenders use an algorithm to decide whether or not to approve loans.\n" + "This algorithm uses a variety of information about " + current_scenario_data.name + '.\n', "Here's all the information that the algorithm has on file for " + current_scenario_data.name, " You're the fairness lawyer, and it's your duty to examine this case."];
+    explanation_info = ["PayDay Lenders use an algorithm to decide whether or not to approve loans.\n" + "This algorithm uses a variety of information about " + current_scenario_data.name + '.\n', "Here's all the information that the algorithm has on file for " + current_scenario_data.name, " You're the fairness expert, and it's your duty to examine this case."];
   } else {
-    explanation_info = [current_scenario_data.name + "'s case is presented to an algorithm which has to decide whether " + current_scenario_data.name + " is likely to commit another crime", "The predictions from this algorithm may serve a variety of purposes: they may be used by the jury in deciding whether to allow " + current_scenario_data.name + " to be released on bail while they stand trial", "The predictions may be used for consideration in the trial itself, or they may be used to decide, later, whether " + current_scenario_data.name + 'should be released early from prison.', "This algorithm uses a variety of information about " + current_scenario_data.name + '.\n', "Here's all the information that the algorithm has on file for " + current_scenario_data.name, " You're the fairness lawyer, and it's your duty to examine this case."];
+    explanation_info = [current_scenario_data.name + "'s case is presented to an algorithm which has to decide whether " + current_scenario_data.name + " is likely to commit another crime", "The predictions from this algorithm may serve a variety of purposes: they may be used by the jury in deciding whether to allow " + current_scenario_data.name + " to be released on bail while they stand trial", "The predictions may be used for consideration in the trial itself, or they may be used to decide, later, whether " + current_scenario_data.name + 'should be released early from prison.', "This algorithm uses a variety of information about " + current_scenario_data.name + '.\n', "Here's all the information that the algorithm has on file for " + current_scenario_data.name, " You're the fairness expert, and it's your duty to examine this case."];
   }
 
   if (is_narrative) {

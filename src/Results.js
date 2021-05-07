@@ -155,28 +155,6 @@ function ResultsPage() {
             <KindnessGauge caption={"Your kindness vs others!"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={(10.0 - overall_kindness_avg)} value_you={10 - overall_kindness}/>
           </div>
         </div>
-        <div className = "sharing">
-          <div style={{marginBottom:"20px", display: "inline-block"}}>
-            <text>
-              {"Share your results!"}
-            </text>
-          </div>
-          <div style={{display: 'inline-block', paddingLeft: '30px'}}>
-            <TwitterShareButton url="http://fatebyalgorithm.hcc.cs.ox.ac.uk" title={title_msg + "I've just completed Oxford's 'Fate by Algorithm' AI game!"} hashtags = {['Oxford', 'FateByAlgorithm']}>
-              <TwitterIcon round size={50} />
-            </TwitterShareButton>
-          </div>
-          <div style={{display:'inline-block', paddingLeft: '30px', paddingRight: '30px'}}>
-            <FacebookShareButton url ="http://fatebyalgorithm.hcc.cs.ox.ac.uk" quote = {title_msg + "I've just completed Oxford's 'Fate by Algorithm' AI game!"} hashtag = "FateByAlgorithm">
-              <FacebookIcon round size={50}/>
-            </FacebookShareButton>
-          </div>
-          <div style={{marginBottom:"20px", display: "inline-block"}}>
-            <text>
-              {"Contribute to science!"}
-            </text>
-          </div>
-        </div>
         {(kindness_narrative != "NaN") && (kindness_datapoint != "NaN") &&
         <div className="narrative-vs-dp-box">
           <div className = 'left'>
@@ -186,19 +164,11 @@ function ResultsPage() {
             <KindnessGauge caption={"Kindness when shown candidate's datapoints only"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={10 - kindness_datapoint_avg} value_you={10 - kindness_datapoint}/>
           </div>
         </div>}
-        {(group_info != "NaN") &&
-        <div id = "single-box" className="single-box">
-          <KindnessGauge caption={"Using information about human networks\n(neighbourhood, friends, family..)"} left_text="NOT OK" right_text = "OK" value_others={group_info_avg} value_you={8.0}/>
-        </div>}
-        {(esoteric_info != "NaN") &&
-        <div className="single-box">
-          <KindnessGauge caption={"What you think about Big Data info \n(e.g. days since last phone change...)"} left_text = "NOT OK" right_text="OK" value_others={esoteric_info_avg} value_you={8.0}/>
-        </div>}
-        {(past_info != "NaN") &&
-        <div className="single-box">
-          <KindnessGauge caption={"Using information about past\n(e.g. debt on past credits...)"} left_text = "NOT OK" right_text="OK" value_others={group_info_avg} value_you={8.0}/>
-        </div>}
 
+        <p style={{fontSize: 'calc(min(2vh, 20px))', border:'2px dotted black', borderRadius: '20px', width: "40%", display: 'block', marginLeft: 'auto', marginRight: 'auto', padding: '20px', whiteSpace: 'pre-wrap'}}>
+          {"If you no longer want to participate and would like us to remove your data from the study, please email nathan.lucaussy@univ.ox.ac.uk quoting code: \n\n"}
+          <b>{random_id}</b>
+        </p>
       </p>
     </div>
 

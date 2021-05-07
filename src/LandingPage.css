@@ -1,5 +1,5 @@
 .App-header {
-  font-size: calc(10px + 4vmin);
+  font-size: calc(min(5vmin, 70px));
   color: black;
   text-align:center;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;

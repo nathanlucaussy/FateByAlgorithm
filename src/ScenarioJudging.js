@@ -117,8 +117,8 @@ function ScenarioJudgingPage(props){
             <div>
               {show_page_0 &&
               <div>
-                <p style={{textAlign:'center', fontSize: '1.2em'}}>
-                  Features that weighed most in the decision:
+                <p style={{marginLeft: 'auto', marginRight: 'auto', display: 'inline-block', padding: '5px', border: '4px solid black', borderRadius: '10px',textAlign:'center', fontSize: '1.4em'}}>
+                  <b>Features that weighed most in the decision:</b>
                 </p>
                 <div className={table_class_name}>
                   <ExplainedTableDataPoints thin= {use_thin} className="tables" current_scenario = {current_scenario_data} user_path_selection={user_path_selection} item_indices = {user_path_selection.dp_selected} show_importance={true} importance={"HIGH"}/>
@@ -196,8 +196,8 @@ function ScenarioJudgingPage(props){
               <div>
                 {show_page_0 &&
                 <div>
-                  <p style={{textAlign:'center', fontSize: '1.2em'}}>
-                    Features that weighed most in the decision:
+                  <p style={{marginLeft: 'auto', marginRight: 'auto', padding:'5px', display: 'inline-block', border: '4px solid black', borderRadius: '10px',textAlign:'center', fontSize: '1.2em'}}>
+                    <b>Features that weighed most in the decision:</b>
                   </p>
                   <div className={table_class_name}>
                     <ExplainedTableDataPoints thin= {use_thin} className="tables" current_scenario = {current_scenario_data} user_path_selection={user_path_selection} item_indices = {user_path_selection.dp_selected} show_importance={true} importance={"HIGH"}/>
@@ -308,34 +308,53 @@ export const DatapointChoice = styled.button`
   display: table-cell;
   border: 5px solid black;
 `;
+export const DatapointChoiceSmall = styled.button`
+  color: black;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  font-size: 1.2em;
+  margin: 0.85em;
+  background-color: white;
+  border-radius: 10px;
+  vertical-align: middle;
+  display: table-cell;
+  border: 2px solid black;
+`;
 
 function CommentsDialog(props){
   const [dp_keys, set_dp_keys] = useState([]);
   const [categories, set_categories] = useGlobal("categories");
-  const [datapoint_items, set_datapoint_items] = useState([]);
+  const [first_dps, set_first_dps] = useState([]);
+  const [second_dps, set_second_dps] = useState([]);
   const history = useHistory();
   const [random_id, set_random_id] = useGlobal("random_id")
   useEffect(() => {
-    const which_category_indices = [0, 1, 2, 3];
-    shuffle(which_category_indices);
-    for (let i = 0; i< 4; i++){
-      const cat = Object.keys(categories[props.current_scenario.category])[which_category_indices [i]]
-      const random_in_category_index = Math.floor(Math.random() * categories[props.current_scenario.category][cat].length);
-      const dp_key = Object.keys(props.current_scenario.datapoints)[categories[props.current_scenario.category][cat][random_in_category_index]]
-      console.log(dp_key)
-      datapoint_items.push(<DatapointChoice onClick={() => {chose_datapoint(dp_key, random_id, props.scenario_count, props.current_scenario.name, props.is_narrative, props.item_indices, history)}}><b>{dp_key}</b></DatapointChoice>)
+
+    for (let i=0; i<props.item_indices.length; i++){
+      const dp_key = Object.keys(props.current_scenario.datapoints)[props.item_indices[i]];
+      first_dps.push(<DatapointChoice onClick={() => {chose_datapoint_first(dp_key, random_id, props.scenario_count, props.current_scenario.name, props.is_narrative, props.item_indices, history)}}><b>{dp_key}</b></DatapointChoice>)
+    }
+    for (let i=0; i<Object.keys(props.current_scenario.datapoints).length; i++){
+      if (!(props.item_indices.includes(i))){
+        const dp_key = Object.keys(props.current_scenario.datapoints)[i];
+        second_dps.push(<DatapointChoiceSmall onClick={() => {chose_datapoint_second(dp_key, random_id, props.scenario_count, props.current_scenario.name, props.is_narrative, props.item_indices, history)}}><b>{dp_key}</b></DatapointChoiceSmall>)
+      }
     }
   }, []);
+  //page 1 states
   const [show_first_page, set_show_first_page] = useState(true);
   const [show_second_page, set_show_second_page] = useState(false);
   const [show_datapoints, set_show_datapoints] = useState(false);
   const [show_dialog_2, set_show_dialog_2] = useState(false);
   const [show_judge_reason, set_show_judge_reason] = useState(false);
-  const [selected_category, set_selected_category] = useState(false);
+  const [selected_category_1, set_selected_category_1] = useState(false);
+  const [selected_category_2, set_selected_category_2] = useState(false);
   const [show_text_boxes, set_show_text_boxes] = useState(false);
   const [show_end_first_comments, set_show_end_first_comments] = useState(false);
   const [show_new_comments_button, set_show_new_comments_button] = useState(false);
   const [clicked_first_continue, set_clicked_first_continue] = useState(false);
+  const [show_first_dps, set_show_first_dps] = useState(true);
+  const [show_second_dps, set_show_second_dps] = useState(false);
+  const [show_second_dps_prompt, set_show_second_dps_prompt] = useState(false);
 
   //page 2 states
   const [show_extraneous_text_box, set_show_extraneous_text_box] = useState(false);
@@ -359,6 +378,7 @@ function CommentsDialog(props){
 
   var fairness_choice = "NEUTRAL";
   var dialog_1_lines = [""];
+  var second_dp_lines = "";
   var dialog_2_lines = [""];
   var dialog_3_lines = [""];
 
@@ -372,10 +392,15 @@ function CommentsDialog(props){
   const [textbox3, set_textbox3] = useState("starting");
 
 
-  function chose_datapoint(dp_key, random_id, scenario_count, scenario_name, scenario_is_narrative, datapoints_selected, history){
+  function chose_datapoint_first(dp_key, random_id, scenario_count, scenario_name, scenario_is_narrative, datapoints_selected, history){
+    set_show_second_dps_prompt(true);
+    datapoints_style =  {filter: 'opacity(50%)'}
+    set_selected_category_1(dp_key);
+  }
+  function chose_datapoint_second(dp_key, random_id, scenario_count, scenario_name, scenario_is_narrative, datapoints_selected, history){
     set_show_dialog_2(true);
     datapoints_style =  {filter: 'opacity(50%)'}
-    set_selected_category(dp_key);
+    set_selected_category_2(dp_key);
     if ((scenario_count != 2) && (scenario_count != 5)){
       const requestOptions = {
           headers:{
@@ -389,7 +414,8 @@ function CommentsDialog(props){
             'scenario_name': scenario_name,
             'is_narrative': scenario_is_narrative.toString(),
             'dp_selected': datapoints_selected.toString(),
-            'chosen_dp': dp_key
+            'chosen_dp_1': selected_category_1,
+            'chosen_dp_2': dp_key
           })
       };
       fetchApi('/send_short_comments', requestOptions);
@@ -397,47 +423,51 @@ function CommentsDialog(props){
     }
   }
 
-  if (props.scenario_count <= 2){
+  if (props.scenario_count <= 1){
     if (props.most_recent_fairness < 50){
       fairness_choice = "UNFAIR";
 
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
-      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but we're not convinced & we ask you to explain how you made your mind up.\n\n Of the following datapoints the algorithm actually used, which do you think it was LEAST justified in using?";
+      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "];
+      second_dp_lines = "Which info do you think it should have used instead?"
     }
     else if (props.most_recent_fairness > 50){
       fairness_choice = "FAIR";
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been MOST justified in using?";
-      dialog_2_lines = [ "Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "]
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but we're not convinced & we ask you to explain how you made your mind up.\n\nOf the following datapoints the algorithm actually used, which do you think it was MOST justified in using?";
+      dialog_2_lines = ["Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "]
+      second_dp_lines = "Which additional info do you think the algorithm should have used?"
     }
     else{
       fairness_choice = "NEUTRAL";
 
-      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but the fairness judge is not convinced and he asks you to explain how you made your mind up.\n\nOf the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
-      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
+      dialog_1_lines = "You marked the decision as " + fairness_choice + ", but we're not convinced & we ask you to explain how you made your mind up.\n\nOf the following datapoints the algorithm actually used, which do you think it was LEAST justified in using?";
+      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "];
+      second_dp_lines = "Which info do you think it should have used instead?"
     }
   }
   else{
     if (props.most_recent_fairness <= 50){
       fairness_choice = "UNFAIR";
 
-      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
-      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info?"];
+      dialog_1_lines = "Of the following datapoints the algorithm actually used, which do you think it was LEAST justified in using?";
+      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "];
+      second_dp_lines = "Which info do you think it should have used instead?"
     }
     else if (props.most_recent_fairness > 50){
       fairness_choice = "FAIR";
-      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been MOST justified in using?";
-      dialog_2_lines = [ "Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info?"]
+      dialog_1_lines = "Of the following datapoints the algorithm actually used, which do you think it was MOST justified in using?";
+      dialog_2_lines = [ "Why is it *fair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "]
+      second_dp_lines = "Which additional info do you think the algorithm should have used?"
+
     }
     else{
       fairness_choice = "NEUTRAL";
 
-      dialog_1_lines = "Of the following datapoints the algorithm had access to, which do you think it would have been LEAST justified in using?";
-      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category) + "' info? Convince me with as many reasons as you can! "];
+      dialog_1_lines = "Of the following datapoints the algorithm actually used, which do you think it was LEAST justified in using?";
+      dialog_2_lines = ["Why is it *unfair* to use the '" + String.prototype.toUpperCase.apply(selected_category_1) + "' info? Convince me with as many reasons as you can! "];
+      second_dp_lines = "Which info do you think it should have used instead?"
     }
   }
-
-
-
 
   function change_page_comments(){
     set_show_first_page(false);
@@ -516,12 +546,24 @@ function CommentsDialog(props){
     if (event.target.value.split(' ').length > 4){
         set_completed_text_box_1(true)
     }
+    if (event.target.value.split(' ').length == 5){
+      const element_to_scroll_to = document.getElementById('savebutton');
+      if (element_to_scroll_to){
+        element_to_scroll_to.scrollIntoView();
+      }
+    }
   }
   function handleChange_second_reason(event){
     set_textbox1("grayed")
     set_category_fairness_comment_2(event.target.value)
     if (event.target.value.split(' ').length > 4){
         set_completed_text_box_2(true)
+    }
+    if (event.target.value.split(' ').length == 5){
+      const element_to_scroll_to = document.getElementById('continuebutton');
+      if (element_to_scroll_to){
+        element_to_scroll_to.scrollIntoView();
+      }
     }
   }
   function handleChange_third_reason(event){
@@ -539,17 +581,26 @@ function CommentsDialog(props){
         set_completed_text_box_4(true)
     }
   }
-  const intro_prompt = useFixedPositionWindup(dialog_1_lines, () => {dialog_1_style = {filter: 'opacity(50%)'}; set_show_datapoints(true)})
+  const first_dps_prompt = useFixedPositionWindup(dialog_1_lines, () => {dialog_1_style = {filter: 'opacity(50%)'}; set_show_first_dps(true)})
+  const second_dps_prompt = useFixedPositionWindup(second_dp_lines, () => { set_show_second_dps(true)})
   const extraneous_prompt = useFixedPositionWindup(extraneous_prompt_text)
   if (show_first_page){
     page =
       <div>
         <div className='prompt'  style = {dialog_1_style}>
-          {intro_prompt}
+          {first_dps_prompt}
         </div>
-        {show_datapoints &&
+        {show_first_dps &&
         <div style = {datapoints_style}>
-          {datapoint_items}
+          {first_dps}
+        </div>}
+        {show_second_dps_prompt &&
+        <div className='prompt'>
+          {second_dps_prompt}
+        </div>}
+        {show_second_dps && show_second_dps_prompt &&
+        <div style = {datapoints_style}>
+          {second_dps}
         </div>}
         {show_dialog_2 &&
         <span style={{textAlign:'left'}}>
@@ -557,24 +608,28 @@ function CommentsDialog(props){
         </span>}
         {show_text_boxes &&
         <div style ={{paddingBottom: '20px' }}>
-          <Timer initialTime={120000}
-                 direction="backward"
-                 checkpoints={[
-                               {
-                                   time: 2,
-                                   callback: () => change_page_comments(),
-                               }]}>
-            {() => (
-                <div className="timer-box">
-                  <React.Fragment>
-                      <b>
-                      {"TIMER: "}
-                      <Timer.Minutes />{":"}
-                      <Timer.Seconds /></b>
-                  </React.Fragment>
-                </div>
-            )}
-          </Timer>
+          <div>
+            <div style= {{display: 'block', width: '100%'}}>
+              <Timer initialTime={120000}
+                     direction="backward"
+                     checkpoints={[
+                                   {
+                                       time: 2,
+                                       callback: () => change_page_comments(),
+                                   }]}>
+                {() => (
+                    <div className="timer-box">
+                      <React.Fragment>
+                          <b>
+                          {"TIMER: "}
+                          <Timer.Minutes />{":"}
+                          <Timer.Seconds /></b>
+                      </React.Fragment>
+                    </div>
+                )}
+              </Timer>
+            </div>
+          </div>
           {(props.most_recent_fairness > 50) && <span style={{textAlign:'left'}} className = 'prompt '><p> I think it's fair to use that information because...</p></span>}
           {(props.most_recent_fairness <= 50) && <span style={{textAlign:'left'}} className = 'prompt '><p> I think it's unfair to use that information because...</p></span>}
           <Input className = {textbox1} placeholder="all your thoughts can go here... (5 words min.)"  onChange = {handleChange_first_reason} minRows="1"  wrap="soft" type="text" style={{width: "90%"}}/>
@@ -586,20 +641,16 @@ function CommentsDialog(props){
               <br />
             </div>
           }
-          {completed_text_box_2 &&
-            <div>
-              <span style={{textAlign:'left'}} className = 'prompt '><p> and because...</p></span>
-              <Input  className = {textbox3} placeholder="all your thoughts can go here... (5 words min.)"  onChange = {handleChange_third_reason} minRows="1"  wrap="soft" type="text" style={{width: "90%"}}/>
-              <br />
-            </div>
-          }
-          {(completed_text_box_1 && (!(completed_text_box_3))&& (!(clicked_first_continue))) &&
+          {(completed_text_box_1 && (!(completed_text_box_2))&& (!(clicked_first_continue))) &&
           <div style ={{display: "block"}}>
-            <Button onClick={change_page_comments}>SKIP</Button>
+            <Button id = "savebutton" onClick={change_page_comments}>
+              Save answers
+              & continue
+            </Button>
           </div>}
-          {(completed_text_box_3 && (!(clicked_first_continue))) &&
+          {(completed_text_box_2 && (!(clicked_first_continue))) &&
           <div style={{display:'block'}}>
-            <Button onClick={change_page_comments}>CONTINUE</Button>
+            <Button id = "continuebutton" onClick={change_page_comments}>CONTINUE</Button>
           </div>}
         </div>}
       </div>
@@ -627,7 +678,8 @@ function CommentsDialog(props){
                                                                   props.current_scenario.name,
                                                                   props.is_narrative,
                                                                   props.item_indices,
-                                                                  selected_category,
+                                                                  selected_category_1,
+                                                                  selected_category_2,
                                                                   category_fairness_comment_1,
                                                                   category_fairness_comment_2,
                                                                   category_fairness_comment_3,
@@ -650,13 +702,15 @@ function CommentsDialog(props){
           <span style={{textAlign:'center'}} className = 'prompt '><p> {extraneous_prompt}</p></span>
           <Input  placeholder="all your thoughts can go here... (5 words minimum)" onChange={handleChange_extraneous} minRows="1"  wrap="soft" type="text" style={{width: "90%"}}/>
         </div>}
+        <div style={{marginBottom: '40px'}}>
         {(completed_text_box_4 || (selected_extraneous_category == "none")) &&
           <NextPageButton to={("/scenario".concat((parseInt(props.scenario_count) ).toString())).concat('/final_page')}
                           scenario_count={props.scenario_count}
                           scenario_name={props.current_scenario.name}
                           is_narrative = {props.is_narrative}
                           datapoints_selected = {props.item_indices}
-                          selected_category = {selected_category}
+                          selected_category_1 = {selected_category_1}
+                          selected_category_2 = {selected_category_2}
                           category_fairness_comment_1 = {category_fairness_comment_1}
                           category_fairness_comment_2 = {category_fairness_comment_2}
                           category_fairness_comment_3 = {category_fairness_comment_3}
@@ -664,10 +718,11 @@ function CommentsDialog(props){
                           extraneous_comment = {extraneous_comment}
                           />
         }
+        </div>
       </div>
     }
     return(
-      <div>
+      <div style={{scrollBehaviour: 'smooth'}}>
         {page}
       </div>
     )
@@ -675,7 +730,7 @@ function CommentsDialog(props){
 
 function SecondTimerEnd(to, scenario_count,
                         scenario_name, is_narrative,
-                        datapoints_selected, selected_category,
+                        datapoints_selected, selected_category_1, selected_category_2,
                         category_fairness_comment_1, category_fairness_comment_2,
                         category_fairness_comment_3,
                         selected_extraneous_category,
@@ -699,7 +754,8 @@ function SecondTimerEnd(to, scenario_count,
                               'scenario_name': scenario_name,
                               'is_narrative': is_narrative.toString(),
                               'dp_selected': datapoints_selected.toString(),
-                              'chosen_dp': selected_category,
+                              'chosen_dp_1': selected_category_1,
+                              'chosen_dp_2': selected_category_2,
                               'dp_fairness_comment_1': category_fairness_comment_1,
                               'dp_fairness_comment_2': category_fairness_comment_2,
                               'dp_fairness_comment_3': category_fairness_comment_3,
@@ -735,7 +791,8 @@ function NextPageButton(props){
           'scenario_name': props.scenario_name,
           'is_narrative': props.is_narrative.toString(),
           'dp_selected': props.datapoints_selected.toString(),
-          'chosen_dp': props.selected_category,
+          'chosen_dp_1': props.selected_category_1,
+          'chosen_dp_2': props.selected_category_2,
           'dp_fairness_comment_1': props.category_fairness_comment_1,
           'dp_fairness_comment_2': props.category_fairness_comment_2,
           'dp_fairness_comment_3': props.category_fairness_comment_3,
@@ -744,7 +801,7 @@ function NextPageButton(props){
           'extraneous_comment': props.extraneous_comment
         })
     };
-    console.log(props.selected_category);
+
 
     fetchApi('/send_comments', requestOptions);
     showNext(props.to);

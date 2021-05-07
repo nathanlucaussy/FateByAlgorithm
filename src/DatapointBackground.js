@@ -16,7 +16,7 @@ const FlashDiv = styled.div`
 export const TightTableDescriptionText = styled.button`
   color: white;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.2em;
+  font-size: calc(min(2vh, 25px));
   margin: 0.5em;
   padding: 4px;
   background-color: #606060;
@@ -31,7 +31,7 @@ export const TightTableDescriptionText = styled.button`
 export const TightValueText = styled.button`
   color: black;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 25px));
   margin: 0.2em;
   background-color: white;
   border-radius: 25px;
@@ -82,7 +82,7 @@ export function Speedo(props){
     if (props.only_val || props.indication == "N/A"){
       return(
         <div className = "only-value">
-          <ValueText style={{marginTop: "0px"}}><b>{props.text_value}</b></ValueText>
+          <ValueText ><b>{props.text_value}</b></ValueText>
         </div>
       );
     }
@@ -106,18 +106,39 @@ export function Speedo(props){
 
 export function SpeedoInTable(props){
   function DisplayValue(val) {
-    return(props.indication)
+    return(props.text_value.split(":")[1])
   };
+  function DisplayValueThin(val){
+    return("")
+  }
   console.log(props.text_value)
   var level = 0;
-  if (props.indication == "LOW" || props.indication == "COMMON"){
+  var left_indic = "";
+  var right_indic = "";
+  if (props.indication == "LOW"){
     level = 0.25;
+    left_indic = "LOW VAL"
+    right_indic = "HIGH VAL"
+  }
+  else if (props.indication == "COMMON") {
+    level = 0.25
+    left_indic = "COMMON"
+    right_indic = "UNCOMMON"
   }
   else if (props.indication == "AVERAGE") {
     level = 0.5;
+    left_indic = "LOW VAL"
+    right_indic = "HIGH VAL"
+  }
+  else if (props.indication == "UNCOMMON") {
+    level = 0.75;
+    left_indic = "COMMON"
+    right_indic = "UNCOMMON"
   }
   else{
-    level = 0.8;
+    level = 0.82;
+    left_indic = "LOW VAL"
+    right_indic = "HIGH VAL"
   }
   if (props.thin){
     if (props.only_val || props.indication == 'N/A'){
@@ -128,7 +149,7 @@ export function SpeedoInTable(props){
     else if (props.only_gauge){
       return(
         <div className = "table-gaugechart-container">
-          <GaugeChart style={{width: '150px', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
+          <GaugeChart style={{width: '150px', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValueThin} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
         </div>
       );
     }
@@ -136,8 +157,18 @@ export function SpeedoInTable(props){
       return(
         <div>
           <div className = "table-gaugechart-container">
-            <GaugeChart style={{width: '150px', marginLeft: 'auto', marginRight: 'auto', marginBottom : '2%', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
-            <TightValueText style={{marginLeft: 'auto', marginRight:'auto', display: 'block', marginTop: "0px"}}><b>{props.text_value}</b></TightValueText>
+            <TightValueText style={{marginLeft: 'auto', marginRight:'auto', display: 'block', marginTop: "5px"}}><b>{props.text_value}</b></TightValueText>
+            <div style = {{width: '150px', backgroundColor: 'white'}} className="gc-box">
+              <GaugeChart style={{width: '150px', marginLeft: 'auto',  marginRight: 'auto', marginTop : '2%', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValueThin} needleColor={"darkgray"} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
+              <div className="indicator-box">
+                <p className="indicationleft" style={{color: 'black'}}>
+                  LOW
+                </p>
+                <p className="indicationright" style={{color: 'black'}}>
+                  HIGH
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -152,7 +183,7 @@ export function SpeedoInTable(props){
     else if (props.only_gauge){
       return(
         <div className = "table-gaugechart-container">
-          <GaugeChart style={{width: '220px', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
+          <GaugeChart style={{width: '280px', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
         </div>
       );
     }
@@ -160,8 +191,20 @@ export function SpeedoInTable(props){
       return(
         <div>
           <div className = "table-gaugechart-container">
-            <GaugeChart style={{width: '220px', marginLeft: 'auto', marginRight: 'auto', marginBottom: '2%', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'black'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
-            <TightValueText style={{maxWidth: '400px', marginLeft: 'auto', marginRight:'auto', display: 'block', marginTop: "0px"}}><b>{props.text_value}</b></TightValueText>
+            <TightValueText style={{maxWidth: '340px', marginLeft: 'auto', marginRight:'auto', display: 'block', marginTop: "4px"}}><b>{props.text_value}</b></TightValueText>
+            <div style={{width: '280px'}} className="gc-box">
+              <span style={{fontSize: '20px'}}>
+                <GaugeChart style={{width: '280px', marginLeft: 'auto', marginRight: 'auto', marginTop: '2%', position: 'relative', display: 'inline-block'}} nrOfLevels={20} percent={level} arcWidth={0.17} width={200} formatTextValue={DisplayValue} textColor={'white'} colors={['#E1AD01',  '#F4976C', '#bf0000']}/>
+              </span>
+              <div style={{marginTop: '0px'}}>
+                <p className= "indicationleft" >
+                  {left_indic}
+                </p>
+                <p className= "indicationright">
+                  {right_indic}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -206,7 +249,7 @@ export default function TableInfoSpeedos(props){
     if (i == (len-1)){
       items.push(
         <tr>
-          <th>
+          <th style={{border:'2px dotted black', borderRadius:'30px', paddingRight: '30px'}}>
             <InfoAndSpeedo info={key_1} value={props.current_scenario.datapoints[key_1]} indication={props.current_scenario.dp_indications[key_1]}/>
           </th>
         </tr>
@@ -216,10 +259,10 @@ export default function TableInfoSpeedos(props){
       const key_2 = Object.keys(props.current_scenario.datapoints)[props.item_indices[i+1]];
       items.push(
         <tr>
-          <th style={{'border':'2px dotted black', 'borderRadius':'30px'}}>
+          <th style={{border:'2px dotted black', borderRadius:'30px', paddingRight: '30px'}}>
             <InfoAndSpeedo info={key_1} value={props.current_scenario.datapoints[key_1]} indication={props.current_scenario.dp_indications[key_1]}/>
           </th>
-          <th style={{'border':'2px dotted black', 'borderRadius':'30px'}}>
+          <th style={{border:'2px dotted black', borderRadius:'30px', paddingRight: '30px'}}>
             <InfoAndSpeedo info={key_2} value={props.current_scenario.datapoints[key_2]} indication={props.current_scenario.dp_indications[key_2]}/>
           </th>
         </tr>
@@ -330,7 +373,7 @@ export function TriadExpanded(props){
           </div>
           <div className="dp-back-right">
             {show_speedo && <Speedo thin={props.thin} text_value={cur_val} indication={cur_indic}/>}
-            {props.show_importance && <Speedo thin={props.thin} text_value={'IMPORTANCE: ' + props.importance} indication={props.importance}/>}
+            {props.show_importance && <ValueText>{"IMPORTANCE: " + props.importance}</ValueText>}
           </div>
         </div>
       </div>

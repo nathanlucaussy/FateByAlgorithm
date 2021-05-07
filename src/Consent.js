@@ -17,7 +17,7 @@ function ConsentPage(){
         </div>
         <div>
           <p style={{fontFamily: "Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif",
-                     fontSize:"1.2vw", lineHeight:"1.3", padding: "2%", width:"55%", textAlign: "center",   display: "block", marginLeft: "auto", marginRight: "auto", border:"5px solid black"}}>
+                     fontSize:"calc(min(2vh, 22px))", lineHeight:"1.3", padding: "2%", width:"55%", textAlign: "center",   display: "block", marginLeft: "auto", marginRight: "auto", border:"5px solid black"}}>
             <h3>General Information: Research Ethics Approval ref. CS_C1A_21_012</h3>
             <br /><br />
             The aim of this study is to analyse the impact of forms of presentation on how we perceive the justice of algorithm’s decisions.
@@ -45,7 +45,7 @@ function ConsentPage(){
       </div>
       <div>
         <p style={{fontFamily: "Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif",
-                   fontSize:"1.2vw", lineHeight:"1.3", padding: "2%", width:"55%", textAlign: "center",   display: "block", marginLeft: "auto", marginRight: "auto"}}>
+                   fontSize:"calc(min(2vh, 22px))", lineHeight:"1.3", padding: "2%", width:"55%", textAlign: "center",   display: "block", marginLeft: "auto", marginRight: "auto"}}>
 
           <h3> Do I have to take part?</h3>
 
@@ -89,7 +89,7 @@ function ConsentPage(){
           <br />
 
 
-          This project has been reviewed by, and received ethics clearance through, the University of Oxford Central University Research Ethics Committee [reference number].
+          This project has been reviewed by, and received ethics clearance through, the University of Oxford Central University Research Ethics Committee [ref. CS_C1A_21_012].
           <br /><br />
 
 
@@ -122,17 +122,19 @@ function ConsentPage(){
           UK</i>
         </p>
       </div>
-      <label style={{fontSize: '1.2vw'}}>
-            Are you over 18?:
-            <input
-              name="over18"
-              type="checkbox"
-              checked={over18}
-              onChange={() => set_over18((!(over18)))} />
-      </label>
-
-      <div style = {{paddingTop: '50px', paddingBottom: '150px'}}>
-        {over18 && <NextButton text="NEXT" to={"instructions"}/>}
+      <div style={{border: "5px solid black", borderRadius: "20px", paddingLeft: "30px",paddingRight: "30px",marginBottom:'150px', paddingTop: "30px", display: 'inline-block'}}>
+        <label style={{fontSize: 'calc(min(2vh, 28px))'}}>
+              Are you over 18?:
+              <input
+                name="over18"
+                className= "checkbox"
+                type="checkbox"
+                checked={over18}
+                onChange={() => set_over18((!(over18)))} />
+        </label>
+        <div style = {{paddingTop: '50px', paddingBottom: '30px'}}>
+          {over18 && <NextButton text="NEXT" to={"instructions"}/>}
+        </div>
       </div>
     </div>
   );

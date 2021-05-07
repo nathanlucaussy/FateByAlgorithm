@@ -17,7 +17,7 @@ const MoreButton = styled.button`
   margin-right:auto;
   color: white;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 30px));
   margin: 1em;
   background-color: black;
   border-radius: 10px;
@@ -26,7 +26,7 @@ const MoreButton = styled.button`
 export const TableDescriptionText = styled.button`
   color: white;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 30px));
   margin: 1em;
   padding: 7px;
   background-color: #606060;
@@ -40,7 +40,7 @@ export const TableDescriptionText = styled.button`
 export const ThinTableDescriptionText = styled.button`
   color: white;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.2em;
+  font-size: calc(min(2vh, 20px));
   width: 150px;
   margin: 0.5em;
   padding: 2px;
@@ -55,7 +55,7 @@ export const ThinTableDescriptionText = styled.button`
 export const ValueText = styled.button`
   color: black;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 30px));
   margin: 1em;
   background-color: white;
   border-radius: 25px;
@@ -66,7 +66,7 @@ export const ValueText = styled.button`
 const IndicationText = styled.button`
   color: black;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 30px));
   margin: 1em;
   background-color: white;
   border-radius: 10px;
@@ -88,7 +88,7 @@ const ThinExplanatoryText = styled.button`
 const ExplanatoryText = styled.button`
   color: black;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: 1.4em;
+  font-size: calc(min(2.5vh, 30px));
   margin: 1em;
   background-color: white;
   border-radius: 10px;
@@ -423,7 +423,7 @@ function AdditionalInformation(props){
         <div className="MoreButton-container">
           <MoreButton onClick = {handleClickMore}>
             See again all info
-            the algorithm had access to again!
+            the algorithm had access to!
           </MoreButton>
         </div>
       </div>

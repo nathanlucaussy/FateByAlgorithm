@@ -29,7 +29,7 @@ const Button = styled.button`
   border: 4px black solid;
   transform: skew(-5deg);
   padding: 8px;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(min(3vmin, 50px));
   font-family: "Menlo", monospace;
   font-style: italic;
   display: inline-block;
@@ -137,7 +137,8 @@ function LandingPage(){
   const [show_mallet_before, set_show_mallet_before] = useState(false);
   const [show_mallet_mid, set_show_mallet_mid] = useState(false);
   const [show_mallet_after, set_show_mallet_after] = useState(false);
-
+  const [show_explanation_beta, set_show_explanation_beta] = useState(false);
+  const [show_chat, set_show_chat] = useState(false);
   const show_mallets = () => {
     set_show_mallet_before(true);
     setTimeout(() => {
@@ -145,12 +146,15 @@ function LandingPage(){
       set_show_mallet_mid(true);
       setTimeout(() => {
         set_show_mallet_mid(false);
-        set_show_mallet_after(true)
+        set_show_mallet_after(true);
+        setTimeout(() => {
+          set_show_explanation_beta(true);
+        }, 500);
       }, 300);
     }, 300);
   };
 
-
+  const explanation_beta = useFixedPositionWindup("Thank you for visiting the beta version of Fate By Algorithm! We're trialling the game with a select few people, and by participating you will help us improve and refine the game.", () => {setTimeout(() =>{set_show_chat(true)}, 400)});
 
   const mallet = (props) => {
     var object =  <img style={{width: '100px'}} src={mallet_before}/>;
@@ -185,8 +189,16 @@ function LandingPage(){
             {show_mallet_mid && <img style={{width: '200px'}} src={mallet_mid}/>}
             {show_mallet_after && <img style={{width: '200px'}} src={mallet_after}/>}
           </div>
+          <div style ={{display: 'block', width: '60%', marginLeft: 'auto', marginRight: 'auto', padding: '40px', borderRadius: '30px', border: '5px solid black', marginBottom: '40px'}}>
+            <span style={{fontSize: "2vh"}}>
+             <b>
+              {show_explanation_beta && explanation_beta}
+             </b>
+            </span>
+          </div>
+
           <div className='chat-box'>
-            <Chat onFinished={() => {set_show_start_button(true)}} />
+            {show_chat && <Chat onFinished={() => {set_show_start_button(true)}} />}
           </div>
           <div className="start-button-div">
             {show_start_button && <StartButton/>}

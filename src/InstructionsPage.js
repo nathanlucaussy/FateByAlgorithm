@@ -15,7 +15,7 @@ function InstructionsPage(){
 
   const lines = [ "We'll first show the profile of a specific person " +  current_scenario_data.name,
                   "Then, an algorithm makes a decision about some aspect of their life.",
-                  "As the 'fairness expert', you'll tell us whether you think the decision is fair. Your task is to convince the 'fairness judge' of why you think so!",
+                  "As the 'fairness expert', you'll tell us whether you think the decision is fair. Your task is to convince us (the judges) of why you think so!",
                   "After this, you'll meet a bunch of other people...",
                   "When you're done (phew!), you'll get a personalised report showing what kind of 'fairness expert' you are!"
                 ];
@@ -55,8 +55,8 @@ function InstructionsPage(){
           <div style={{border: '5px solid black', borderRadius:'30px'}}>
             <img style={{ width:"75%", display: "block", marginLeft: "auto", marginRight: "auto"}} src={AvJudg}/>
             <div style={{width:"75%", display: "inline-block", margin: "0 auto"}}>
-              <p style={{fontSize:"1.4vw", textAlign: "center"}}>
-                I'm the fairness judge!
+              <p style={{fontSize:"calc(min(2.2vh, 30px))", textAlign: "center"}}>
+                I'm one of the judges!
                 Let me be your guide
               </p>
             </div>

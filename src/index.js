@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import TrackedApp from './App.js';
 
+window.git_hash = process.env.REACT_APP_GIT_HASH;
 
 
 addCallback(global => {

@@ -152,16 +152,16 @@ function ResultsPage() {
               }
           </div>
           <div id = "single-box" className="overall-kindness-box">
-            <KindnessGauge caption={"Your kindness vs others!"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={(10.0 - overall_kindness_avg)} value_you={10 - overall_kindness}/>
+            <KindnessGauge caption={"What you think about algorithms' fairness vs others!"} left_text={"ALWAYS UNFAIR!"}  right_text = {"ALWAYS FAIR!"} value_others={(overall_kindness_avg)} value_you={overall_kindness}/>
           </div>
         </div>
         {(kindness_narrative != "NaN") && (kindness_datapoint != "NaN") &&
         <div className="narrative-vs-dp-box">
           <div className = 'left'>
-            <KindnessGauge caption={"Kindness when shown candidate's story/narrative"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={10 - kindness_narrative_avg} value_you={10 - kindness_narrative}/>
+            <KindnessGauge caption={"When shown a candidate's story/narrative, do you think algorithms are fair?"} left_text={"ALWAYS UNFAIR!"}  right_text = {"ALWAYS FAIR"} value_others={kindness_narrative_avg} value_you={kindness_narrative}/>
           </div>
           <div className = 'right'>
-            <KindnessGauge caption={"Kindness when shown candidate's datapoints only"} left_text={"MEAN!"}  right_text = {"SUPERKIND!"} value_others={10 - kindness_datapoint_avg} value_you={10 - kindness_datapoint}/>
+            <KindnessGauge caption={"When shown a candidate's datapoints only, do you think algorithms are fair?"} left_text={"ALWAYS UNFAIR!"}  right_text = {"ALWAYS FAIR!"} value_others={kindness_datapoint_avg} value_you={kindness_datapoint}/>
           </div>
         </div>}
 

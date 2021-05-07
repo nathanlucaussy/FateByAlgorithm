@@ -10,6 +10,6 @@ function resolveURL(endpoint){
 
 // simply wrap fetch
 export function fetchApi(endpoint, ...args){
-	const apiURL = endpoint;
+	const apiURL = resolveURL(endpoint);
 	return fetch(apiURL, ...args);
 }

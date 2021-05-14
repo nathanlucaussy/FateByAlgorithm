@@ -62,16 +62,21 @@ function ScenarioBackgroundPage(props){
           </div>
           <div style={{display:'block'}}>
             <div  className="presentation-container">
-              <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n' + explanation_info]}
-                                person = {current_scenario_data.gender}
-                                onFinished = {() => set_show_dialog(true)}/>
+              <span style={{whiteSpace: "pre-wrap"}}>
+                <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n', explanation_info]}
+                                  person = {current_scenario_data.gender}
+                                  onFinished = {() => set_show_dialog(true)}/>
+              </span>
             </div>
           </div>
           <div className="scen-background-split">
             <div className="scen-background-left">
               {show_dialog &&
                 <div className="dialog-box">
-                    <DialogComponent person = {current_scenario_data.gender} lines={current_scenario_data.narrative} onFinished = {() => {set_show_next(true)}}/>
+                    <DialogComponent person = {current_scenario_data.gender}
+                                     lines={current_scenario_data.narrative}
+                                     showFastForward = {true}
+                                     onFinished = {() => {set_show_next(true)}}/>
                     <div style = {{textAlign:'center', padding: '5%'}}>
                       {show_next && <NextButton to={`${props.parent_path}/evaluationpage`} text='CONTINUE'/>}
                     </div>
@@ -100,11 +105,11 @@ function ScenarioBackgroundPage(props){
           </div>
           <div style={{display:'block'}}>
             <div  className="presentation-container">
-             <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n', explanation_info]}
+             <DialogComponent lines = {[current_scenario_data.name + ' is your ' + case_adjective + ' case as the fairness expert!\n' +  explanation_info]}
                               person = {current_scenario_data.gender}
                               onFinished = {() => setTimeout(function(){
                                               history.push(`${props.parent_path}/evaluationpage`)
-                                            },    2000)}/>
+                                            },    2300)}/>
             </div>
           </div>
           {show_next && <NextButton to={`${props.parent_path}/evaluationpage`} text='CONTINUE'/>}

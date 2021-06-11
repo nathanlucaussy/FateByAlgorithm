@@ -76,7 +76,7 @@ function Footer(){
   return(
     <div className="footer">
       <p style= {{textAlign:'center', color:'white', paddingTop:'5px', paddingBottom: '5px', marginTop: '0px', marginBottom: '0px'}}>
-        Created by Nathan Lucaussy and Professor Van Kleek, HCC Oxford
+        Created by (Student) and Professor Van Kleek, HCC Oxford
       </p>
     </div>
   )

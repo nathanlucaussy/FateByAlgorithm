@@ -97,7 +97,7 @@ function ConsentPage(){
 
           <br />
 
-          If you have a concern about any aspect of this study, please speak to Nathan Lucaussy (email: nathan.lucaussy@univ.ox.ac.uk) or their supervisor Professor Max Van Kleek (email: max.van.kleek@cs.ox.ac.uk) and we will do our best to answer your query.  We will acknowledge your concern within 10 working days and give you an indication of how it will be dealt with.  If you remain unhappy or wish to make a formal complaint, please contact the Chair of the Research Ethics Committee at the University of Oxford who will seek to resolve the matter as soon as possible:
+          If you have a concern about any aspect of this study, please speak to supervisor Professor Max Van Kleek (email: max.van.kleek@cs.ox.ac.uk) and we will do our best to answer your query.  We will acknowledge your concern within 10 working days and give you an indication of how it will be dealt with.  If you remain unhappy or wish to make a formal complaint, please contact the Chair of the Research Ethics Committee at the University of Oxford who will seek to resolve the matter as soon as possible:
 
           <br /><br />
 

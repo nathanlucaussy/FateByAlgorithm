@@ -112,7 +112,7 @@ setGlobal({
     },
     {
       'name':'Ray',
-      "narrative": ["Ray is a gig-economy worker. He was born in a modest neighbourhood.Although Ray was a good student, he dropped out when his parents fell ill. Ray started working to cover family expenses. "
+      "narrative": ["Ray is a gig-economy worker. He was born in a modest neighbourhood. Although Ray was a good student, he dropped out when his parents fell ill four years ago. Ray started working to cover family expenses. "
 
                     + "Since then, Ray has been working as a delivery worker. Through this, he earns $23 000 per year - although it makes for 9-hour days.",
 
